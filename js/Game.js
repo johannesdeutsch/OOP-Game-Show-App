@@ -13,6 +13,10 @@ class Game {
     * Selects random phrase from phrases property
     * @return {Object} Phrase object chosen to be used
     */
-    getRandomPhrase() {};
+    getRandomPhrase() {
+        const randomNumber = Math.floor ( Math.random () * this.phrases.length );
+        const randomPhrase = this.phrases[randomNumber];
+        return randomPhrase;
+    };
 
 };
