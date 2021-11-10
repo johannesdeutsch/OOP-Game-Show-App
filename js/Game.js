@@ -5,7 +5,7 @@
 class Game {
     constructor() {
         this.missed = 0;
-        this.phrases = ['keep your chin up', 'cool as a cucumber', 'once in a blue moon', 'every cloud has a silver lining', 'out of the woods'];
+        this.phrases = [];
         this.activePhrase = null;
     };
 
@@ -20,3 +20,9 @@ class Game {
     };
 
 };
+
+const chin = new Game(0, 'keep your chin up', null);
+const cucumber = new Game(0, 'cool as a cucumber', null);
+const moon = new Game(0, 'once in a blue moon', null);
+const cloud = new Game(0, 'every cloud has a silver lining', null);
+const woods = new Game(0, 'out of the woods', null);
