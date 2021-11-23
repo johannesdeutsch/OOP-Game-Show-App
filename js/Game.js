@@ -5,7 +5,13 @@
 class Game {
     constructor() {
         this.missed = 0;
-        this.phrases = [];
+        this.phrases = [
+            new Phrase('keep your chin up'),
+            new Phrase('cool as a cucumber'),
+            new Phrase('once in a blue moon'),
+            new Phrase('every cloud has a silver lining'),
+            new Phrase('out of the woods')
+        ];
         this.activePhrase = null;
     };
 
@@ -19,10 +25,14 @@ class Game {
         return randomPhrase;
     };
 
-};
 
-const chin = new Game(0, 'keep your chin up', null);
-const cucumber = new Game(0, 'cool as a cucumber', null);
-const moon = new Game(0, 'once in a blue moon', null);
-const cloud = new Game(0, 'every cloud has a silver lining', null);
-const woods = new Game(0, 'out of the woods', null);
+    /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
+    startGame() {
+        document.getElementById('overlay').style.display = 'none';
+        this.getRandomPhrase().addPhraseToDisplay();
+        this.activePhrase = this.getRandomPhrase();
+
+    };
+};

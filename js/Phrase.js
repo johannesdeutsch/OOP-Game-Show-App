@@ -13,19 +13,49 @@ class Phrase {
     addPhraseToDisplay() {
         const selectPhraseDiv = document.getElementById('phrase');
         const ulOfDiv = selectPhraseDiv.firstElementChild;
+        
         const splitPhrase = this.phrase.split('');
-        ulOfDiv.innerHTML += `<li>${splitPhrase[i]}</li>`;
-
+        
         for (let i = 0; i < splitPhrase.length; i++) {
             if (splitPhrase[i] === ' ') {
-                createListElement.classList.add('space');
-                createListElement.classList.remove(`hide letter ${splitPhrase[i]}`);
-            } else if (splitPhrase[i] === '\w') {
-                createListElement.classList.add(`hide letter ${splitPhrase[i]}`);
-                createListElement.classList.remove('space');
-            }
-        }  
+                ulOfDiv.innerHTML += `<li class='space'> </li>`;
+            } else {
+                ulOfDiv.innerHTML += `<li class='letter'>${splitPhrase[i]}</li>`;    
+            };
+        };
     };
+
+    
+    /**
+    * Checks if passed letter is in phrase
+    * @param (string) letter - Letter to check
+    */  
+
+    checkLetter() {
+        const getKeyboard = document.getElementById('qwerty');
+        getKeyboard.addEventListener('click', event => {
+            for (let i = 0; i < splitPhrase.length; i++) {
+                if (splitPhrase[i] === EventTarget.innerHTML) {
+                    return true;
+                } else {
+                    return false;
+                };
+            };
+        })
+    };
+
+
+    /**
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+
+    showMatchedLetter() {
+
+
+    };
+
+
 };
 
 const phraseObject = new Phrase('some phrase');
