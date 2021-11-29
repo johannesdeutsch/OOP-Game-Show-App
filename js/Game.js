@@ -33,6 +33,64 @@ class Game {
         document.getElementById('overlay').style.display = 'none';
         this.getRandomPhrase().addPhraseToDisplay();
         this.activePhrase = this.getRandomPhrase();
+    };
+
+
+    handleInteraction() {
+
 
     };
+
+
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't
+    won
+    */
+    checkForWin() {
+        if(this.activePhrase === showMatchedLetter()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    };
+    
+
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
+        const images = document.getElementByClassName('scoreboard')
+        for (let i = 0; i < images.length; i++) {
+            const randomNumber = Math.floor((Math.random(i)) * 10) * images.length;
+            randomNumber[i].innerHTML = "<img src='images/lostHeart.png' alt='Lost Heart Icon' height='35' width='30'>";
+        }
+        this.missed += 1;
+
+        if(this.missed >= 5) {
+            this.gameOver();
+        }
+    };
+
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
+        document.getElementById('overlay').style.display = 'block';
+        
+        if(this.missed >= 5) {
+        document.getElementById('game-over-message').textContent = 'Ooops! Unfortunately you could not guess it';
+        document.getElementById('overlay').classList.add('lose');
+        document.getElementById('overlay').classList.remove('start');
+        } else {
+        document.getElementById('game-over-message').textContent = 'Congratulations! You are the winner';
+        document.getElementById('overlay').classList.add('win');
+        document.getElementById('overlay').classList.remove('start');
+        }
+    };
+
 };

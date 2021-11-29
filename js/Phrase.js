@@ -33,15 +33,15 @@ class Phrase {
 
     checkLetter() {
         const getKeyboard = document.getElementById('qwerty');
-        getKeyboard.addEventListener('click', event => {
+        getKeyboard.addEventListener('click', e => {
             for (let i = 0; i < splitPhrase.length; i++) {
-                if (splitPhrase[i] === EventTarget.innerHTML) {
+                if (splitPhrase[i] === e.target) {
                     return true;
                 } else {
                     return false;
-                };
+                }
             };
-        })
+        });
     };
 
 
@@ -51,7 +51,9 @@ class Phrase {
     */
 
     showMatchedLetter() {
-
+        if(this.checkLetter() === true) {
+            ulOfDiv.classList.add('show');
+        }
 
     };
 

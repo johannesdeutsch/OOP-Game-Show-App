@@ -34,9 +34,9 @@ logPhrase(game.getRandomPhrase()); */
 game.startGame();
 console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`); */
 
-const buttonElement = document.getElementById('btn__reset');
+/* const buttonElement = document.getElementById('btn__reset');
 let game;
 buttonElement.addEventListener('click', event => {
 game = new Game();
 game.startGame();
-});
+}); */
