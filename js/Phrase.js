@@ -31,17 +31,8 @@ class Phrase {
     * @param (string) letter - Letter to check
     */  
 
-    checkLetter() {
-        const getKeyboard = document.getElementById('qwerty');
-        getKeyboard.addEventListener('click', e => {
-            for (let i = 0; i < splitPhrase.length; i++) {
-                if (splitPhrase[i] === e.target) {
-                    return true;
-                } else {
-                    return false;
-                }
-            };
-        });
+    checkLetter(letter) {
+        return this.phrase.includes(letter);
     };
 
 
@@ -50,11 +41,17 @@ class Phrase {
     * @param (string) letter - Letter to display
     */
 
-    showMatchedLetter() {
-        if(this.checkLetter() === true) {
-            ulOfDiv.classList.add('show');
-        }
-
+    showMatchedLetter(letter) {
+        const selectPhraseDiv = document.getElementById('phrase');
+        const ulOfDiv = selectPhraseDiv.firstElementChild;
+        const letterLi = ulOfDiv.getElementsByTagName('li');
+        
+        for(let i = 0; i < letterLi.length; i++) {
+            if(letterLi[i].textContent === this.checkLetter(letter)) {
+                ulOfDiv.className = 'show';
+            }
+        };
+        
     };
 
 
