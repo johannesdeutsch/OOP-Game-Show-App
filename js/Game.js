@@ -48,12 +48,17 @@ class Game {
     won
     */
     checkForWin() {
-        if(this.activePhrase === showMatchedLetter()) {
-            return true;
-        } else {
-            return false;
-        }
-
+        const selectPhraseDiv = document.getElementById('phrase');
+        const ulOfDiv = selectPhraseDiv.firstElementChild;
+        const letterLi = ulOfDiv.getElementsByTagName('li');
+        
+        for (let i = 0; i < letterLi.length; i++) {
+            if (letterLi[i].classList.contains('letter') === true) {
+                return false;
+            } else {
+                return true;
+            }
+        };
     };
     
 
