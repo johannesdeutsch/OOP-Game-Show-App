@@ -53,7 +53,7 @@ class Game {
         const letterLi = ulOfDiv.getElementsByTagName('li');
         
         for (let i = 0; i < letterLi.length; i++) {
-            if (letterLi[i].classList.contains('letter') === true) {
+            if (letterLi[i].classList.contains('letter')) {
                 return false;
             } else {
                 return true;
