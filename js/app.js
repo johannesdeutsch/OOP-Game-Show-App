@@ -40,3 +40,17 @@ buttonElement.addEventListener('click', event => {
 game = new Game();
 game.startGame();
 });
+
+/**
+* Handles onscreen keyboard button clicks
+* @param (HTMLButtonElement) button - The clicked button element
+*/
+
+
+const button = document.getElementsByClassName('key');
+
+for (let i = 0; i < button.length; i++) {
+    button[i].addEventListener('click', event => {
+        game.handleInteraction(event.target);  
+    });   
+};

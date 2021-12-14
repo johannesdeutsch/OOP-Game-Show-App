@@ -36,29 +36,19 @@ class Game {
     };
 
 
-    handleInteraction() {
-
-
-    };
-
-
     /**
     * Checks for winning move
     * @return {boolean} True if game has been won, false if game wasn't
     won
     */
     checkForWin() {
-        const selectPhraseDiv = document.getElementById('phrase');
-        const ulOfDiv = selectPhraseDiv.firstElementChild;
-        const letterLi = ulOfDiv.getElementsByTagName('li');
-        
-        for (let i = 0; i < letterLi.length; i++) {
-            if (letterLi[i].classList.contains('letter')) {
-                return false;
-            } else {
-                return true;
-            }
-        };
+        const letter = document.querySelectorAll('.letter');
+        const show = document.querySelectorAll('.show');
+        if (letter.length === show.length) {
+            return true;
+        } else {
+            return false;
+        }
     };
     
 
@@ -68,16 +58,20 @@ class Game {
     * Checks if player has remaining lives and ends game if player is out
     */
     removeLife() {
-        const images = document.getElementByClassName('scoreboard')
+        const images = document.getElementsByClassName('tries');
+        
         for (let i = 0; i < images.length; i++) {
-            const randomNumber = Math.floor((Math.random(i)) * 10) * images.length;
-            randomNumber[i].innerHTML = "<img src='images/lostHeart.png' alt='Lost Heart Icon' height='35' width='30'>";
-        }
-        this.missed += 1;
+            let symbols = images[i].firstElementChild;
+            
 
-        if(this.missed >= 5) {
-            this.gameOver();
-        }
+            if (symbols.src.includes("images/liveHeart.png")) {
+                this.missed += 1;
+                if (this.missed > 5 || this.missed === 5) {
+                    this.gameOver();
+                }  
+                return symbols.src = "images/lostHeart.png"   
+            }           
+        };
     };
 
     /**
@@ -98,4 +92,22 @@ class Game {
         }
     };
 
+    
+    handleInteraction(event) {
+        
+        if (this.activePhrase.checkLetter(event.textContent)) {
+            this.activePhrase.showMatchedLetter(event.textContent);
+            event.classList.add('chosen');
+            if (this.checkForWin() === true) {
+                this.gameOver(true);
+            }
+            if (this.missed > 4) {
+                this.gameOver(false);
+            }
+        } else if (event.disabled === false) {
+            event.classList.add('wrong');
+            this.removeLife();
+        }   
+        event.disabled = true;
+    };
 };
