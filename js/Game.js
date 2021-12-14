@@ -94,20 +94,20 @@ class Game {
 
     
     handleInteraction(event) {
-        
-        if (this.activePhrase.checkLetter(event.textContent)) {
-            this.activePhrase.showMatchedLetter(event.textContent);
+        event.disabled = true;
+        if (this.activePhrase.checkLetter(event.textContent) === false) {
+            event.classList.add('wrong');
+            this.removeLife();
+        } else if (this.activePhrase.checkLetter(event.textContent)) {
             event.classList.add('chosen');
+            this.activePhrase.showMatchedLetter(event.textContent);
+            this.checkForWin();
             if (this.checkForWin() === true) {
                 this.gameOver(true);
             }
             if (this.missed > 4) {
                 this.gameOver(false);
             }
-        } else if (event.disabled === false) {
-            event.classList.add('wrong');
-            this.removeLife();
-        }   
-        event.disabled = true;
+        } 
     };
 };
