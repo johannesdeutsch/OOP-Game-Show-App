@@ -31,8 +31,8 @@ class Game {
     */
     startGame() {
         document.getElementById('overlay').style.display = 'none';
-        this.getRandomPhrase().addPhraseToDisplay();
         this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
     };
 
 
@@ -110,4 +110,28 @@ class Game {
             }
         } 
     };
+
+
+    reset(event) {
+        const selectPhraseDiv = document.getElementById('phrase');
+        const ulOfDiv = selectPhraseDiv.firstElementChild;
+        //const liLetter = document.getElementsByClassName('letter');
+        //const liSpace = document.getElementsByClassName('space');
+        // const show = document.querySelectorAll('.show');
+
+        ulOfDiv.innerHTML = '';
+
+        event.disabled = false;
+        event.classList.add('key');
+
+        const images = document.getElementsByClassName('tries');
+        
+        for (let i = 0; i < images.length; i++) {
+            let symbols = images[i].firstElementChild;
+            symbols.src = "images/liveHeart.png";        
+        };
+
+    }
+
+
 };

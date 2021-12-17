@@ -38,7 +38,11 @@ const buttonElement = document.getElementById('btn__reset');
 let game;
 buttonElement.addEventListener('click', event => {
 game = new Game();
+game.reset();
 game.startGame();
+
+
+
 });
 
 /**
@@ -54,3 +58,6 @@ for (let i = 0; i < button.length; i++) {
         game.handleInteraction(event.target);  
     });   
 };
+
+
+

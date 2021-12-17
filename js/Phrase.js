@@ -46,9 +46,9 @@ class Phrase {
         const ulOfDiv = selectPhraseDiv.firstElementChild;
         const letterLi = ulOfDiv.getElementsByTagName('li');
         
-        for(let i = 0; i < letterLi.length; i++) {
-            if(letterLi[i].textContent === letter) {
-                letterLi[i].classList.add('show');
+        for (let i = 0; i < letterLi.length; i++) {
+            if (letterLi[i].textContent === letter) {
+                letterLi[i].classList.replace('letter', 'show');
             }
         };
         
