@@ -20,7 +20,7 @@ class Phrase {
             if (splitPhrase[i] === ' ') {
                 ulOfDiv.innerHTML += `<li class='space'> </li>`;
             } else {
-                ulOfDiv.innerHTML += `<li class='letter'>${splitPhrase[i]}</li>`;    
+                ulOfDiv.innerHTML += `<li class='hide letter ${splitPhrase[i]}'>${splitPhrase[i]}</li>`;    
             };
         };
     };
@@ -48,7 +48,7 @@ class Phrase {
         
         for (let i = 0; i < letterLi.length; i++) {
             if (letterLi[i].textContent === letter) {
-                letterLi[i].classList.replace('letter', 'show');
+                letterLi[i].classList.replace('hide', 'show');
             }
         };
         

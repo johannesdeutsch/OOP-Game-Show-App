@@ -42,9 +42,8 @@ class Game {
     won
     */
     checkForWin() {
-        const letter = document.querySelectorAll('.letter');
-        const show = document.querySelectorAll('.show');
-        if (letter.length === show.length) {
+        const letter = document.querySelectorAll('.hide');
+        if (letter.length === 0) {
             return true;
         } else {
             return false;
@@ -93,8 +92,7 @@ class Game {
     };
 
     
-    handleInteraction(event) {
-        document.getElementById('qwerty').disabled = true;
+    handleInteraction(event) {   
         if (this.activePhrase.checkLetter(event.textContent) === false) {
             event.classList.add('wrong');
             this.removeLife();
@@ -107,23 +105,23 @@ class Game {
             }
             if (this.missed > 4) {
                 this.gameOver(false);
-            }  
-        }   
+            }   
+        }  
+        event.disabled = true;
     };
 
 
-    reset(event) {
+    reset(e) {
         const selectPhraseDiv = document.getElementById('phrase');
         const ulOfDiv = selectPhraseDiv.firstElementChild;
         ulOfDiv.innerHTML = '';
-
-        document.getElementById('qwerty').disabled = false;
         
         this.missed = 0;
         
         const button = document.getElementsByClassName('key');
 
         for (let i = 0; i < button.length; i++) {
+            button[i].disabled = false;
             button[i].classList.remove('chosen');
             button[i].classList.remove('wrong');
         };
