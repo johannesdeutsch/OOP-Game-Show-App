@@ -67,7 +67,7 @@ class Game {
             if (symbols.src.includes("images/liveHeart.png")) {
                 this.missed += 1;
                 if (this.missed > 5 || this.missed === 5) {
-                    this.gameOver();
+                    this.gameOver(false);
                 }  
                 return symbols.src = "images/lostHeart.png"   
             }           
@@ -81,7 +81,7 @@ class Game {
     gameOver(gameWon) {
         document.getElementById('overlay').style.display = 'block';
         
-        if(this.missed >= 5) {
+        if(gameWon === false) {
         document.getElementById('game-over-message').textContent = 'Ooops! Unfortunately you could not guess it';
         document.getElementById('overlay').classList.add('lose');
         document.getElementById('overlay').classList.remove('start');
@@ -94,7 +94,7 @@ class Game {
 
     
     handleInteraction(event) {
-        event.disabled = true;
+        document.getElementById('qwerty').disabled = true;
         if (this.activePhrase.checkLetter(event.textContent) === false) {
             event.classList.add('wrong');
             this.removeLife();
@@ -107,23 +107,28 @@ class Game {
             }
             if (this.missed > 4) {
                 this.gameOver(false);
-            }
-        } 
+            }  
+        }   
     };
 
 
     reset(event) {
         const selectPhraseDiv = document.getElementById('phrase');
         const ulOfDiv = selectPhraseDiv.firstElementChild;
-        //const liLetter = document.getElementsByClassName('letter');
-        //const liSpace = document.getElementsByClassName('space');
-        // const show = document.querySelectorAll('.show');
-
         ulOfDiv.innerHTML = '';
 
-        event.disabled = false;
-        event.classList.add('key');
+        document.getElementById('qwerty').disabled = false;
+        
+        this.missed = 0;
+        
+        const button = document.getElementsByClassName('key');
 
+        for (let i = 0; i < button.length; i++) {
+            button[i].classList.remove('chosen');
+            button[i].classList.remove('wrong');
+        };
+
+        
         const images = document.getElementsByClassName('tries');
         
         for (let i = 0; i < images.length; i++) {
